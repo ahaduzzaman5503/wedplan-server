@@ -8,6 +8,9 @@ const serviceRoutes = require("./routes/service.routes");
 const testRoutes = require("./routes/test.routes");
 const adminRoutes = require("./routes/admin.routes");
 const bookingRoutes = require("./routes/booking.routes");
+const profileRoutes = require("./routes/profile.routes");
+const paymentRoutes = require("./routes/payment.routes");
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -32,6 +35,10 @@ app.use("/api/services", serviceRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/test", testRoutes); // temporary, remove later
 app.use("/api/admin", adminRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/api/payments", paymentRoutes);
+
+
 
 // Error handlers (must stay at the bottom, after all routes)
 app.use(notFound);
