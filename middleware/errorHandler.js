@@ -6,14 +6,20 @@ function notFound(req, res, next) {
   });
 }
 
-// Runs when any route throws an error (500 or custom status)
+// Runs when any route throws an error
 function errorHandler(err, req, res, next) {
   console.error(err);
-  const status = err.status || 500;
-  res.status(status).json({
-    success: false,
-    message: err.message || "Internal server error",
-  });
+
+  const status = err.status || err.statusCode || 500;
+
+  // Never leak internal details of server errors in production
+  const message =
+    status >= 500 && process.env.NODE_ENV === "production"
+      ? "Internal server error"
+      : err.message || "Internal server error";
+
+  res.status(status).json({ success: false, message });
 }
 
 module.exports = { notFound, errorHandler };
+
