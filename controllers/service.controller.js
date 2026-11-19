@@ -201,6 +201,22 @@ async function deleteService(req, res, next) {
     const service = await loadOwnedService(req, res);
     if (!service) return;
 
+    // Do not delete a service that customers are still waiting on or have booked
+    const activeBookings = await getDB()
+      .collection("bookings")
+      .countDocuments({
+        serviceId: service._id,
+        status: { $in: ["pending", "accepted"] },
+      });
+
+    if (activeBookings > 0) {
+      return res.status(409).json({
+        success: false,
+        message:
+          "This service has pending or accepted booking requests, so it cannot be deleted. Turn off its availability instead.",
+      });
+    }
+
     await getDB()
       .collection("services")
       .deleteOne({ _id: service._id, vendorId: req.user._id });
@@ -209,7 +225,7 @@ async function deleteService(req, res, next) {
   } catch (error) {
     next(error);
   }
-}
+};
 
 module.exports = {
   createService,

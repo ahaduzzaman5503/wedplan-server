@@ -7,6 +7,7 @@ const userRoutes = require("./routes/user.routes");
 const serviceRoutes = require("./routes/service.routes");
 const testRoutes = require("./routes/test.routes");
 const adminRoutes = require("./routes/admin.routes");
+const bookingRoutes = require("./routes/booking.routes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api", userRoutes);
 app.use("/api/services", serviceRoutes);
+app.use("/api/bookings", bookingRoutes);
 app.use("/api/test", testRoutes); // temporary, remove later
 app.use("/api/admin", adminRoutes);
 
