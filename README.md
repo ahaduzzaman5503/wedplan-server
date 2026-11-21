@@ -175,7 +175,7 @@ Start without Nodemon:
 npm start
 ```
 
-The API runs at `http://localhost:5000` by default.
+The API runs at `https://wedplan-server-six.vercel.app` by default.
 
 ## Local Stripe Webhook Testing
 

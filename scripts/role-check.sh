@@ -3,7 +3,7 @@
 #   export ADMIN="token" VENDOR="token" CUSTOMER="token"
 #   bash scripts/role-check.sh
 
-API="${API_URL:-http://localhost:5000}"
+API="${API_URL:-https://wedplan-server-six.vercel.app}"
 ZERO="000000000000000000000000"
 pass=0
 fail=0
