@@ -10,7 +10,7 @@ WedPlan supports three roles:
 
 ## Live API
 
-Live API deployment: **Add the production server URL here**
+Live API deployment: **https://wedplan-server-six.vercel.app**
 
 ## Repositories
 
