@@ -8,9 +8,9 @@ WedPlan supports three roles:
 - **Vendor:** Publishes services, manages booking requests, and manages a Premium subscription.
 - **Admin:** Reviews services, manages users, and views platform payment transactions.
 
-## Live API : https://wedplan-server.onrender.com
+## Live API : https://wedplan-server-six.vercel.app
 
-Live API deployment: **https://wedplan-server.onrender.com**
+Live API deployment: **https://wedplan-server-six.vercel.app/**
 
 ## Repositories
 
