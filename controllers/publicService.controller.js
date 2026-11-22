@@ -115,12 +115,19 @@ async function listServices(req, res, next) {
 // GET /api/services/locations
 async function getServiceLocations(req, res, next) {
   try {
-    const locations = await getDB()
+    const result = await getDB()
       .collection("services")
-      .distinct("location", AVAILABLE);
+      .aggregate([
+        { $match: AVAILABLE },
+        { $group: { _id: "$location" } },
+        { $sort: { _id: 1 } },
+      ])
+      .toArray();
 
-    locations.sort((a, b) => a.localeCompare(b));
-    res.json({ success: true, locations });
+    res.json({
+      success: true,
+      locations: result.map((item) => item._id),
+    });
   } catch (error) {
     next(error);
   }
